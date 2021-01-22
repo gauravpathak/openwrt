@@ -10,4 +10,4 @@ jobs:
       - run: ./scripts/feeds update -a && ./scripts/feeds install -a
       - run: cp -vf configuration-files/openwrt-bpi-r64.conf .config
       - run: export FORCE_UNSAFE_CONFIGURE=1 && make clean && yes "" | make oldconfig && make -j9 V=s
-      - run: tar -xzvf bin/targets/mediatek/mt7622/openwrt-mediatek-mt7622-bpi_bananapi-r64-rootfs.tar.gz -C ./ --exclude "lib/firmware/*" --exclude "lib/modules/*"
+      - run: tar -xzvf bin/targets/mediatek/mt7622/openwrt-mediatek-mt7622-default-rootfs.tar.gz -C ./ --exclude "lib/firmware/*" --exclude "lib/modules/*"
