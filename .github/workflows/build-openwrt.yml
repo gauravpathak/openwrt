@@ -14,4 +14,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Mediatek-OpenWRT-RootFS-tar
-          path: "${GITHUB_WORKSPACE}/bin/targets/mediatek/mt7622/openwrt-mediatek-mt7622-default-rootfs.tar.gz"
+          path: bin/targets/mediatek/mt7622/openwrt-mediatek-mt7622-default-rootfs.tar.gz
