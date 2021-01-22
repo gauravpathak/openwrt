@@ -1,7 +1,7 @@
 name: build-openwrt
 on:
-  schedule:
-    - cron:  '*/15 * * * *'
+  workflow_dispatch:
+  
 jobs:
   build_openwrt:
     runs-on: ubuntu-latest
