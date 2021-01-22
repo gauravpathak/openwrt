@@ -1,9 +1,8 @@
 name: build-openwrt
 on:
-  schedule:
-    - cron:  '0 0 * * *'    # Every midnight
   workflow_dispatch:
-  
+  schedule:
+    - cron: '0 0 * * *'
 jobs:
   build_openwrt:
     runs-on: ubuntu-latest
