@@ -1,0 +1,28 @@
+name: Openwrt-MT7622
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * MON'
+jobs:
+  build_openwrt:
+    name: Build OpenWRT Image for MT7622
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code in Runner
+        uses: actions/checkout@v2
+      - name: Feeds Update and Install
+        run: ./scripts/feeds update -a && ./scripts/feeds install -a
+      - name: Copy Custom Configuration File
+        run: cp -vf configuration-files/openwrt-bpi-r64.conf .config
+      - name: Run Make Command
+        run: export FORCE_UNSAFE_CONFIGURE=1 && make clean && yes "" | make oldconfig && make -j9 V=s
+      - name: 'Upload tar file openwrt-mediatek-mt7622-default-rootfs.tar.gz'
+        uses: actions/upload-artifact@v2
+        with:
+          name: Mediatek-OpenWRT-RootFS-tar
+          path: bin/targets/mediatek/mt7622/openwrt-mediatek-mt7622-default-rootfs.tar.gz

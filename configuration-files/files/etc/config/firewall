@@ -1,0 +1,31 @@
+config defaults
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+
+config zone
+	option name 'wan'
+	list network 'wan'
+	list network 'wan6'
+	option output 'ACCEPT'
+	option input 'ACCEPT'
+	option forward 'ACCEPT'
+	option masq '1'
+
+config zone
+	option name 'lan'
+	list network 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+
+config forwarding
+	option src 'lan'
+	option dest 'wan'
+
+config forwarding
+	option src 'wan'
+	option dest 'lan'
+
+config include
+	option	path	'/etc/firewall.user'
